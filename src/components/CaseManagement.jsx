@@ -50,11 +50,31 @@ const Section = ({ title, cases, count }) => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     arrows: false,
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -76,7 +96,7 @@ const Section = ({ title, cases, count }) => {
         ))}
         {count < 4 && Array(4 - count).fill().map((_, index) => (
           <div key={`empty-${index}`} className="px-2 p-1">
-            <div className="w-80 h-56 invisible"></div>
+            <div className="w-full sm:w-80 h-56 invisible"></div>
           </div>
         ))}
       </Slider>
@@ -85,7 +105,7 @@ const Section = ({ title, cases, count }) => {
 };
 
 const CaseBox = ({ caseItem }) => (
-  <div className="case-box w-80 h-56 rounded-[15px] bg-[rgba(217,217,217,0.80)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.75)] flex flex-col justify-end overflow-hidden">
+  <div className="case-box w-full sm:w-80 h-56 rounded-[15px] bg-[rgba(217,217,217,0.80)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.75)] flex flex-col justify-end overflow-hidden">
     <div className="bg-white h-2/5 w-full flex flex-col justify-center items-center">
       <div>
         <p className="m-0 text-sm font-['Poppins'] font-bold text-[#C99F4A]">
