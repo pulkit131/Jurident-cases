@@ -99,12 +99,12 @@ const Section = ({ title, cases, count }) => {
   };
 
   return (
-    <div className="section mb-12">
-      <div className="relative mb-4">
+    <div className="section mt-6 mb-16">
+      <div className="relative mb-8">
         <hr className="absolute top-0 left-0 w-32 h-1 bg-[#C99F4A] border-none" />
         <h2 className="relative top-3 text-2xl font-semibold font-['Poppins'] dark:text-white">
           {title}
-          <span className="ml-2 inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-[#C99F4A] font-['Poppins'] font-medium">
+          <span className="ml-4 inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-[#C99F4A] font-['Poppins'] font-medium">
             {count}
           </span>
         </h2>
@@ -128,7 +128,7 @@ const Section = ({ title, cases, count }) => {
 const CaseBox = ({ caseItem }) => (
   <div className="case-box w-full sm:w-80 h-56 rounded-[15px] bg-[rgba(217,217,217,0.80)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.75)] flex flex-col justify-end overflow-hidden">
     <div className="bg-white h-2/5 w-full flex flex-col justify-center items-center">
-      <div>
+      <div className="mr-5">
         <p className="m-0 text-sm font-['Poppins'] font-bold text-[#C99F4A]">
           Case No: <span className="text-[#050125]">{caseItem.caseNo}</span>
         </p>

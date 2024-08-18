@@ -25,16 +25,16 @@ const Header = () => {
 
     return (
         <header className={`flex justify-between items-center p-4 ${darkMode ? 'bg-[#060125] text-white' : 'bg-gray-100 text-gray-900'}`}>
-            <div className="flex items-center">
+            <div className="flex items-center ml-8">
                 <img src={logo} alt="Jurident Logo" className="h-8 mr-4" />
-                <span className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-900'}`}>JURIDENT</span>
+                <span className={`font-bold font-['Poppins'] text-lg ${darkMode ? 'text-white' : 'text-gray-900'}`}>JURIDENT</span>
             </div>
             <nav className="flex gap-8">
                 {['Cases', 'Services', 'News', 'About Us'].map((item) => (
                     <a
                         key={item}
                         href="#"
-                        className={`relative text-base p-2 ${
+                        className={`relative text-base p-2 font-semibold font-['Poppins'] ${
                             activeItem === item
                                 ? `after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-yellow-500 ${darkMode ? 'text-white' : 'text-gray-900'}`
                                 : darkMode ? 'text-white' : 'text-gray-900'
@@ -45,7 +45,7 @@ const Header = () => {
                     </a>
                 ))}
             </nav>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 mr-8">
                 <div className={`flex items-center justify-center w-8 h-8 rounded-full cursor-pointer ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                     <img className="w-6" src={addIcon} alt="Add" />
                 </div>
