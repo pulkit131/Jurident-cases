@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import background from "../assets/background.png";
+import backgroundLight from "../assets/background.png";
+import backgroundDark from "../assets/background2.png";
 import nextArrowIcon from "../assets/nextarrow.svg";
 
 const CaseManagement = () => {
@@ -34,12 +35,32 @@ const CaseManagement = () => {
     ],
   });
 
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const handleDarkModeChange = () => {
+      setDarkMode(document.documentElement.classList.contains('dark'));
+    };
+
+    handleDarkModeChange();
+
+    const observer = new MutationObserver(handleDarkModeChange);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const backgroundImage = darkMode ? backgroundDark : backgroundLight;
+
   return (
-    <div className="min-h-screen bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${background})` }}>
+    <div 
+      className="min-h-screen bg-cover bg-no-repeat bg-center" 
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       <div className="container mx-auto p-5">
-        <Section title="Open Cases" cases={cases.open} count={cases.open.length} />
-        <Section title="Closed Cases" cases={cases.closed} count={cases.closed.length} />
-        <Section title="Upcoming Cases" cases={cases.upcoming} count={cases.upcoming.length} />
+        <Section title="Open Cases" cases={cases.open} count={cases.open.length} darkMode={darkMode} />
+        <Section title="Closed Cases" cases={cases.closed} count={cases.closed.length} darkMode={darkMode} />
+        <Section title="Upcoming Cases" cases={cases.upcoming} count={cases.upcoming.length} darkMode={darkMode} />
       </div>
     </div>
   );
@@ -81,7 +102,7 @@ const Section = ({ title, cases, count }) => {
     <div className="section mb-12">
       <div className="relative mb-4">
         <hr className="absolute top-0 left-0 w-32 h-1 bg-[#C99F4A] border-none" />
-        <h2 className="relative top-3 text-2xl font-semibold font-['Poppins']">
+        <h2 className="relative top-3 text-2xl font-semibold font-['Poppins'] dark:text-white">
           {title}
           <span className="ml-2 inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-[#C99F4A] font-['Poppins'] font-medium">
             {count}
