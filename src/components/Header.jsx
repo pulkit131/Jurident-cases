@@ -24,7 +24,7 @@ const Header = () => {
     }, []);
 
     return (
-        <header className={`flex justify-between items-center p-4 ${darkMode ? 'bg-[#060125] text-white' : 'bg-gray-100 text-gray-900'}`}>
+        <header className={`absolute top-0 left-0 right-0 z-50 flex justify-between items-center p-4 ${darkMode ? 'bg-transparent text-white' : 'bg-transparent text-gray-900'}`}>
             <div className="flex items-center ml-8">
                 <img src={logo} alt="Jurident Logo" className="h-8 mr-4" />
                 <span className={`font-bold font-['Poppins'] text-lg ${darkMode ? 'text-white' : 'text-gray-900'}`}>JURIDENT</span>

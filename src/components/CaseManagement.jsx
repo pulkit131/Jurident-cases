@@ -57,7 +57,7 @@ const CaseManagement = () => {
       className="min-h-screen bg-cover bg-no-repeat bg-center" 
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="container mx-auto p-5">
+      <div className="container mx-auto p-5 pt-20">
         <Section title="Open Cases" cases={cases.open} count={cases.open.length} darkMode={darkMode} />
         <Section title="Closed Cases" cases={cases.closed} count={cases.closed.length} darkMode={darkMode} />
         <Section title="Upcoming Cases" cases={cases.upcoming} count={cases.upcoming.length} darkMode={darkMode} />
