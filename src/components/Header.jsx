@@ -1,14 +1,35 @@
 import React, { useState, useEffect } from 'react';
+import './Header.css';
 import logo from '../assets/Vector.png';  
 import addIcon from '../assets/galaAdd0.png'; 
 import settingsIcon from '../assets/cog.png'; 
 import bellIcon from '../assets/bell.png';  
 import userIcon from '../assets/Avatar.png'; 
 import ModeBtn from "../components/Mode_btn";
+import hammenu from '../assets/icons8-menu-50.png';
+import cross from '../assets/icons8-cross-30.png';
 
 const Header = () => {
     const [activeItem, setActiveItem] = useState('Cases');
     const [darkMode, setDarkMode] = useState(false);
+    const [hamStatus, setHamStatus] = useState(false);
+    const [isSticky, setIsSticky] = useState(false);
+
+    const toggleHamStatus = () => {
+        setHamStatus(!hamStatus);
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsSticky(window.scrollY > 50); // Adjust 50 to your preference
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     useEffect(() => {
         const handleDarkModeChange = () => {
@@ -24,41 +45,42 @@ const Header = () => {
     }, []);
 
     return (
-        <header className={`absolute top-0 left-0 right-0 z-50 flex justify-between items-center p-4 ${darkMode ? 'bg-transparent text-white' : 'bg-transparent text-gray-900'}`}>
-            <div className="flex items-center ml-8">
-                <img src={logo} alt="Jurident Logo" className="h-8 mr-4" />
-                <span className={`font-bold font-['Poppins'] text-lg ${darkMode ? 'text-white' : 'text-gray-900'}`}>JURIDENT</span>
+        <header className={`header ${darkMode ? 'dark-mode' : 'light-mode'} ${isSticky ? 'sticky' : ''}`}>
+            <div className="logo-container">
+                <img src={logo} alt="Jurident Logo" className="logo" />
+                <h1 className="brand-name">JURIDENT</h1>
             </div>
-            <nav className="flex gap-8">
+            <nav className={`nav ${hamStatus ? 'active' : ''}`}>
                 {['Cases', 'Services', 'News', 'About Us'].map((item) => (
                     <a
                         key={item}
                         href="#"
-                        className={`relative text-base p-2 font-semibold font-['Poppins'] ${
-                            activeItem === item
-                                ? `after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-yellow-500 ${darkMode ? 'text-white' : 'text-gray-900'}`
-                                : darkMode ? 'text-white' : 'text-gray-900'
-                        }`}
+                        className={`nav-link ${darkMode ? 'dark-mode' : 'light-mode'} ${activeItem === item ? 'active' : ''}`}
                         onClick={() => setActiveItem(item)}
                     >
                         {item}
                     </a>
                 ))}
             </nav>
-            <div className="flex items-center gap-4 mr-8">
-                <div className={`flex items-center justify-center w-8 h-8 rounded-full cursor-pointer ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                    <img className="w-6" src={addIcon} alt="Add" />
+            <div className="icon-container">
+                <div className="icon">
+                    <img src={addIcon} alt="Add" />
                 </div>
-                <div className={`flex items-center justify-center w-8 h-8 rounded-full cursor-pointer ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                    <img className={`w-6 ${darkMode ? 'filter invert' : ''}`} src={settingsIcon} alt="Settings" />
+                <div className="icon">
+                    <img src={settingsIcon} alt="Settings" className={darkMode ? 'dark-mode' : ''} />
                 </div>
-                <div className={`flex items-center justify-center w-8 h-8 rounded-full cursor-pointer ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                    <img className={`w-6 ${darkMode ? 'filter invert' : ''}`} src={bellIcon} alt="Notifications" />
+                <div className="icon">
+                    <img src={bellIcon} alt="Notifications" className={darkMode ? 'dark-mode' : ''} />
                 </div>
-                <div className={`flex items-center justify-center w-8 h-8 rounded-full cursor-pointer ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                    <img className={`w-6 ${darkMode ? 'filter invert' : ''}`} src={userIcon} alt="User" />
+                <div className="icon">
+                    <img src={userIcon} alt="User" className={darkMode ? 'dark-mode' : ''} />
                 </div>
-                <ModeBtn />
+                <div className="mode-btn-container">
+                    <ModeBtn />
+                </div>
+                <div className="mobilescreen" onClick={toggleHamStatus}>
+                    <img src={hamStatus ? cross : hammenu} className="hamimg" alt="Menu Icon" />
+                </div>
             </div>
         </header>
     );

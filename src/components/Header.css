@@ -1,0 +1,137 @@
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.header.sticky {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem;
+}
+
+.header.dark-mode.sticky {
+    background-color: rgba(17, 24, 39, 0.9); /* Tailwind's gray-900 */
+}
+
+.header.light-mode.sticky {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.logo {
+    height: 2rem;
+    margin-right: 1rem;
+}
+
+.brand-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900; /* Extra bold */
+    font-size: 1.5rem; /* Increase size for emphasis */
+    color: #1F2937; /* Tailwind's gray-900 for light mode */
+}
+
+.header.dark-mode .brand-name {
+    color: white; /* White in dark mode */
+}
+
+.nav {
+    display: flex;
+    gap: 2rem;
+   
+}
+
+.nav.active {
+    display: block;
+    flex-direction: column;
+    gap: 2rem;
+    position: fixed;
+    top: 70px;
+    right: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: grey;
+    padding: 30px 0 0 40px;
+    transition:  0.6s ease-in-out;
+}
+
+.nav-link {
+    position: relative;
+    padding: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.nav-link.dark-mode {
+    color: white;
+}
+
+.nav-link.light-mode {
+    color: #1F2937; /* Tailwind's gray-900 */
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #EAB308; /* Tailwind's yellow-500 */
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 2rem;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.icon.dark-mode img {
+    filter: invert(100%);
+}
+
+.mode-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hamimg {
+    display: none;
+    height: 25px;
+    width: auto;
+}
+
+@media screen and (max-width: 769px) {
+    .nav {
+        display: none;
+    }
+    .hamimg {
+        display: block;
+    }
+    .nav.active {
+        display: flex;
+    }
+}
